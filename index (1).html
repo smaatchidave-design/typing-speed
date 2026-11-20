@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TypeRush | Typing Speed Game</title>
+  <meta name="description" content="Words fall from the sky. Type them before they land. Build combos, level up, and share your WPM card.">
+  <meta name="theme-color" content="#050918">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌨️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <div class="logo">Type<span>Rush</span></div>
+      <button id="soundBtn" class="icon-btn" type="button" aria-pressed="true" title="Toggle sound">🔊</button>
+    </header>
+
+    <noscript><p class="sub">TypeRush needs JavaScript to run.</p></noscript>
+
+    <!-- MENU -->
+    <section id="menu" class="screen">
+      <h1>Type fast. <em>Survive.</em></h1>
+      <p class="sub">Words fall from the sky. Type them before they land, build combos, level up, and climb the ranks from Script Kiddie to Keyboard Wizard.</p>
+
+      <label class="field">
+        <span>Your name</span>
+        <input id="playerName" type="text" maxlength="16" placeholder="Player 1" autocomplete="off" spellcheck="false">
+      </label>
+
+      <div class="modes">
+        <button class="mode" type="button" data-mode="survival">
+          <span class="mode-emoji">🛡️</span>
+          <strong>Survival</strong>
+          <span class="mode-desc">3 lives. Words speed up every level. Don't let them land.</span>
+          <em>Best score: <b data-best="survival">0</b></em>
+        </button>
+        <button class="mode" type="button" data-mode="sprint">
+          <span class="mode-emoji">⏱️</span>
+          <strong>Time Attack</strong>
+          <span class="mode-desc">60 seconds on the clock. No lives, just pure speed.</span>
+          <em>Best score: <b data-best="sprint">0</b></em>
+        </button>
+      </div>
+
+      <p class="hint"><kbd>Esc</kbd> pauses the game. Just start typing, no need to press Enter.</p>
+    </section>
+
+    <!-- GAME -->
+    <section id="game" class="screen" hidden>
+      <div class="hud">
+        <div class="stat"><small>Score</small><b id="hudScore">0</b></div>
+        <div class="stat"><small>WPM</small><b id="hudWpm">0</b></div>
+        <div class="stat"><small>Accuracy</small><b id="hudAcc">100%</b></div>
+        <div class="stat"><small id="hudComboLabel">Combo ×1</small><b id="hudCombo">0</b></div>
+        <div class="stat"><small>Level</small><b id="hudLevel">1</b></div>
+        <div class="stat"><small id="hudLivesLabel">Lives</small><b id="hudLives" class="lives">♥♥♥</b></div>
+      </div>
+
+      <div id="arena" class="arena">
+        <div class="danger" aria-hidden="true"></div>
+        <div id="overlay" class="overlay" hidden></div>
+      </div>
+
+      <div class="typer-row">
+        <input id="typer" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="type here…" aria-label="Type the falling words">
+        <button id="quitBtn" class="btn ghost" type="button">✕ Quit</button>
+      </div>
+    </section>
+
+    <!-- RESULT -->
+    <section id="result" class="screen" hidden>
+      <h2 id="resTitle">Run complete</h2>
+      <p id="resBadge" class="badge" hidden>🏆 New personal best!</p>
+      <canvas id="card" class="card" width="1200" height="630" aria-label="Your result share card"></canvas>
+      <div class="actions">
+        <button id="btnDownload" class="btn primary" type="button">⬇ Download card</button>
+        <button id="btnShare" class="btn" type="button" hidden>↗ Share</button>
+        <button id="btnCopy" class="btn" type="button">📋 Copy text</button>
+        <button id="btnAgain" class="btn" type="button">↻ Play again</button>
+        <button id="btnMenu" class="btn ghost" type="button">Menu</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
